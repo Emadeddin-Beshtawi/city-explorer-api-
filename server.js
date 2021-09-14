@@ -32,11 +32,13 @@ app.get("/weather-data", (req, res) => {
   if (lat && lon) {
     let result = [];
     weatherData.forEach((item) => {
+      console.log(item);
       if (item.lat === lat && item.lon === lon) {
         result.push(item);
       }
     });
     let city = result[0];
+    console.log(city);
     let foreCast = city.data.map((item) => {
       return {
         date: item.datetime,

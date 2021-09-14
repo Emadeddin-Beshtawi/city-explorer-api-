@@ -419,9 +419,9 @@
       }
     ],
     "city_name": "Amman",
-    "lon": 31.9515694,
+    "lon": 35.9239625,
     "timezone": "Asia/Amman",
-    "lat": 35.9239625,
+    "lat":  31.9515694,
     "country_code": "JO",
     "state_code": "16"
   }
