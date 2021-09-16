@@ -22,9 +22,9 @@ const PORT = process.env.PORT; //If there is a port use it
 app.get("/", (req, res) => {
   res.status(200).json({ message: "I'm working" });
 });
-
-const weatherController =require("./weather");
-const movieController = require("./movie")
+//////////////// Refactoring //////////////
+const handleWeather = require("./modules/weather");
+const handleMovie = require("./modules/movie");
 
 ///////// Task 1 for weather ///////////
 // let handleWeather = async (req, res) => {
@@ -47,7 +47,7 @@ const movieController = require("./movie")
 //   }
 // };
 
-app.get("/weather", weatherController);
+app.get("/weather", handleWeather);
 
 // Creating a class to model the data
 // class ForeCast {
@@ -78,7 +78,7 @@ app.get("/weather", weatherController);
 //   res.status(200).json(MovieData);
 // };
 
-app.get("/movie", movieController);
+app.get("/movie", handleMovie);
 
 // Creating a class to model the data
 // class MovieSet {
@@ -102,11 +102,11 @@ app.get("/movie", movieController);
 // }
 
 //============================Initialization================================
-// I can visit this server on http://localhost:8000
+// I can visit this server on http://localhost:8080
 
-// app.listen(PORT, () => {
-//   console.log(`listening on port ${PORT}`);
-// });
+app.listen(PORT, () => {
+  console.log(`listening on port ${PORT}`);
+});
 
 ////////////////// Important instructions //////////////
 
