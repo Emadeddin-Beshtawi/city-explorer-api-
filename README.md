@@ -3,7 +3,9 @@
 # Author: Emadeddin Beshtawi
 
 # Overview (problem domain)
-create your API and arrang the data then use the result in another wepsite
+create your API and arrang the data then use the result in another wepsite.
+
+Modularizing JavaScript files on the back-end allows us to re-use functions and makes our code more readable. Clean up your back-end codebase by modularizing your server.js.
 
 # Getting Started
 * creating an empty repo on Github.
@@ -18,10 +20,10 @@ Libraries: React.js /Bootstrap
 # Change Log
 Name of feature: create own API
 
-Estimate of time needed to complete: 4 hours
+Estimate of time needed to complete: 30 mins
 
 Start time: 2
 
-Finish time: 10
+Finish time: 3
 
-Actual time needed to complete: 8 hours
+Actual time needed to complete: 1 hour
