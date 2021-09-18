@@ -1,36 +1,49 @@
 "use strict";
-
 const axios = require("axios");
+const cache = require("./cache.js");
+const MOVIE_API_KEY = process.env.MOVIE_API_KEY;
+let movieInfo = [];
+getMovie("paris");
+function getMovie(query) {
+  const key = "movie-" + query;
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${MOVIE_API_KEY}&query=${query}`;
 
-///////// Task 2 for Movie /////////
+  if (cache[key] && Date.now() - cache[key].timestamp < 50000) {
+    console.log("Cache movie hit");
+  } else {
+    console.log("Cache movie miss");
+    cache[key] = {};
+    cache[key].timestamp = Date.now();
+    cache[key].data = axios
+      .get(url)
+      .then((response) => parseMovie(response.data));
+  }
+  return cache[key].data;
+}
 
-let handleMovie = async (req, res) => {
-  let movCity = req.query.query;
-  let urlForMovie = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIE_API_KEY}&query=${movCity}`;
-  let axiosMovieResponse = await axios.get(urlForMovie);
+function parseMovie(movieData) {
+  try {
+    movieInfo = movieData.results.map((x) => {
+      return new MovieSet(x);
+    });
+    console.log(movieInfo);
 
-  let MovieData = axiosMovieResponse.data.results.map((item) => {
-    return new MovieSet(
-      item.title,
-      item.overview,
-      item.vote_average,
-      item.vote_count,
-      item.poster_path,
-      item.popularity,
-      item.release_date
-    );
-  });
-  res.status(200).json(MovieData);
-};
-
-// Creating a class to model the data
-class ForeCast {
-  constructor(date, description) {
-    this.date = date;
-    this.description = description;
+    return Promise.resolve(movieInfo);
+  } catch (e) {
+    return Promise.reject(e);
   }
 }
 
-console.log("Hello from movie");
+class MovieSet {
+  constructor(t) {
+    this.title = t.title;
+    this.overview = t.overview;
+    this.average_votes = t.vote_average;
+    this.total_votes = t.vote_count;
+    this.image_url = `https://image.tmdb.org/t/p/w500${t.poster_path}`;
+    this.popularity = t.popularity;
+    this.released_on = t.release_date;
+  }
+}
 
-module.exports = handleMovie;
+module.exports = getMovie;
