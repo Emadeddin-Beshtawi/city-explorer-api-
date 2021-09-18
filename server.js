@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Hello From Server" });
 });
 //////////////// Refactoring //////////////
-const handleW = require("./modules/weather");
-const handleM = require("./modules/movie");
+const weather = require("./modules/weather");
+const movie = require("./modules/movie");
 
 app.get("/weather", handleWeather);
 
