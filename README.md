@@ -18,12 +18,15 @@ Language used : JavaScript/CSS
 Libraries: React.js /Bootstrap
 
 # Change Log
-Name of feature: create own API
 
-Estimate of time needed to complete: 30 mins
+Name of feature: 
 
-Start time: 2
+Searching for data from server and rendering results and map image based on data retrieved from search, then send data to weather-bit API created and render other results related to weather, and the movie db API .and MCV Architecture for the code structure, saving previously requested data in Cache.
 
-Finish time: 3
+Estimate of time needed to complete: 5 Hours
 
-Actual time needed to complete: 1 hour
+Start time: 7:30 pm
+
+Finish time: 10:00 pm
+
+Actual time needed to complete: 3.5 Hours
